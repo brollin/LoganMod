@@ -1,4 +1,4 @@
-package basicmod.potions;
+package loganmod.potions;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,8 +26,7 @@ public abstract class BasePotion extends AbstractPotion {
             liquidImg.setAccessible(true);
             hybridImg.setAccessible(true);
             spotsImg.setAccessible(true);
-        }
-        catch (NoSuchFieldException e) {
+        } catch (NoSuchFieldException e) {
             throw new RuntimeException("Failed to access potion image fields.", e);
         }
     }
@@ -36,7 +35,8 @@ public abstract class BasePotion extends AbstractPotion {
     public int basePotency;
     public AbstractPlayer.PlayerClass playerClass = null;
 
-    public BasePotion(String id, int potency, PotionRarity rarity, PotionSize shape, Color liquidColor, Color hybridColor, Color spotsColor) {
+    public BasePotion(String id, int potency, PotionRarity rarity, PotionSize shape, Color liquidColor,
+            Color hybridColor, Color spotsColor) {
         super("", id, rarity, shape, PotionEffect.NONE, liquidColor, hybridColor, spotsColor);
         basePotency = potency;
         checkColors();
@@ -52,10 +52,12 @@ public abstract class BasePotion extends AbstractPotion {
 
     protected void checkColors() {
         if (hybridColor != null && getHybridImg() == null) {
-            throw new RuntimeException("Potion " + ID + " has hybridColor but no hybridImg; if this is intentional, override checkColors. Otherwise, set hybridColor to null or provide a Texture with setHybridImg.");
+            throw new RuntimeException("Potion " + ID
+                    + " has hybridColor but no hybridImg; if this is intentional, override checkColors. Otherwise, set hybridColor to null or provide a Texture with setHybridImg.");
         }
         if (spotsColor != null && getSpotsImg() == null) {
-            throw new RuntimeException("Potion " + ID + " has spotsColor but no spotsImg; if this is intentional, override checkColors. Otherwise, set spotsColor to null or provide a Texture with setSpotsImg.");
+            throw new RuntimeException("Potion " + ID
+                    + " has spotsColor but no spotsImg; if this is intentional, override checkColors. Otherwise, set spotsColor to null or provide a Texture with setSpotsImg.");
         }
     }
 
@@ -78,6 +80,7 @@ public abstract class BasePotion extends AbstractPotion {
     }
 
     public abstract String getDescription();
+
     public void addAdditionalTips() {
 
     }
@@ -89,6 +92,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public Texture getContainerImg() {
         try {
             return (Texture) containerImg.get(this);
@@ -96,6 +100,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public Texture getLiquidImg() {
         try {
             return (Texture) liquidImg.get(this);
@@ -103,6 +108,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public Texture getHybridImg() {
         try {
             return (Texture) hybridImg.get(this);
@@ -110,6 +116,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public Texture getSpotsImg() {
         try {
             return (Texture) spotsImg.get(this);
@@ -125,6 +132,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public void setContainerImg(Texture t) {
         try {
             containerImg.set(this, t);
@@ -132,6 +140,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public void setLiquidImg(Texture t) {
         try {
             liquidImg.set(this, t);
@@ -139,6 +148,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public void setHybridImg(Texture t) {
         try {
             hybridImg.set(this, t);
@@ -146,6 +156,7 @@ public abstract class BasePotion extends AbstractPotion {
             throw new RuntimeException(e);
         }
     }
+
     public void setSpotsImg(Texture t) {
         try {
             spotsImg.set(this, t);

@@ -1,22 +1,23 @@
-package basicmod.relics;
+package loganmod.relics;
 
 import basemod.abstracts.CustomRelic;
 import basemod.helpers.RelicType;
-import basicmod.util.GeneralUtils;
-import basicmod.util.TextureLoader;
+import loganmod.util.GeneralUtils;
+import loganmod.util.TextureLoader;
+
+import static loganmod.LoganMod.relicPath;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.RelicStrings;
-
-import static basicmod.BasicMod.relicPath;
 
 public abstract class BaseRelic extends CustomRelic {
     public AbstractCard.CardColor pool = null;
     public RelicType relicType = RelicType.SHARED;
     protected String imageName;
 
-    //for character specific relics
+    // for character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {
         this(id, imageName, tier, sfx);
 
@@ -26,6 +27,7 @@ public abstract class BaseRelic extends CustomRelic {
     public BaseRelic(String id, RelicTier tier, LandingSound sfx) {
         this(id, GeneralUtils.removePrefix(id), tier, sfx);
     }
+
     public BaseRelic(String id, String imageName, RelicTier tier, LandingSound sfx) {
         super(testStrings(id), "", tier, sfx);
 
@@ -39,8 +41,7 @@ public abstract class BaseRelic extends CustomRelic {
             outlineImg = TextureLoader.getTextureNull(relicPath(imageName + "Outline.png"), true);
             if (outlineImg == null)
                 outlineImg = img;
-        }
-        else {
+        } else {
             ImageMaster.loadRelicImg("Derp Rock", "derpRock.png");
             this.img = ImageMaster.getRelicImg("Derp Rock");
             this.outlineImg = ImageMaster.getRelicOutlineImg("Derp Rock");
@@ -55,7 +56,7 @@ public abstract class BaseRelic extends CustomRelic {
     }
 
     private void setPool(AbstractCard.CardColor pool) {
-        switch (pool) { //Basegame pools are handled differently
+        switch (pool) { // Basegame pools are handled differently
             case RED:
                 relicType = RelicType.RED;
                 break;
@@ -75,7 +76,9 @@ public abstract class BaseRelic extends CustomRelic {
     }
 
     /**
-     * Checks whether relic has localization set up correctly and gives a more accurate error message if it does not
+     * Checks whether relic has localization set up correctly and gives a more
+     * accurate error message if it does not
+     * 
      * @param ID the relic's ID
      * @return the relic's ID, to allow use in super constructor invocation
      */

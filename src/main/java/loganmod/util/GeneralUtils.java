@@ -1,4 +1,4 @@
-package basicmod.util;
+package loganmod.util;
 
 public class GeneralUtils {
     public static String arrToString(Object[] arr) {
