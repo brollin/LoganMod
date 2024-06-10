@@ -1,3 +1,6 @@
 # Project exclude paths
 /target/
 /.idea/
+
+Scritch.java
+steam/content
