@@ -28,10 +28,9 @@ public class CardPatches {
     @SpirePatch(clz = Bludgeon.class, method = SpirePatch.CONSTRUCTOR)
     public static class BludgeonConstructor {
         public static void Postfix(Bludgeon self) {
-            // self.portrait = new
-            // AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/bludgeon.png"), 0,
-            // 0,
-            // 500, 380);
+            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/blogan.png"), 0,
+                    0,
+                    250, 190);
         }
     }
 
@@ -47,10 +46,9 @@ public class CardPatches {
     @SpirePatch(clz = PiercingWail.class, method = SpirePatch.CONSTRUCTOR)
     public static class PiercingWailConstructor {
         public static void Postfix(PiercingWail self) {
-            // self.portrait = new
-            // AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/piercingwail.png"),
-            // 0, 0,
-            // 500, 380);
+            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/loganwail.png"),
+                    0, 0,
+                    250, 190);
         }
     }
 
@@ -77,6 +75,12 @@ public class CardPatches {
             if (card.cardID.equals("Biased Cognition")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/biaseddog_p.png"));
+            } else if (card.cardID.equals("PiercingWail")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/loganwail_p.png"));
+            } else if (card.cardID.equals("Bludgeon")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/blogan_p.png"));
             }
         }
     }
