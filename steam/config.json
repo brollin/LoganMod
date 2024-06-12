@@ -1,8 +1,8 @@
 {
-  "steamPublishedID": "",
+  "steamPublishedID": "3266253644",
   "title": "Logan Mod",
-  "description": "",
-  "visibility": "public",
+  "description": "Logan is a good boy and a powerful ally. Now, you can Slay the Spire with Logan's assistance!",
+  "visibility": "private",
   "changeNote": "v0.0.0: initial release",
-  "tags": []
+  "tags": ["cards"]
 }
