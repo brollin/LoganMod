@@ -1,5 +1,9 @@
 # Logan Mod
 
+<p align="center">
+  <img alt="Logan Mod" src="./steam/image.jpg" width="400" />
+</p>
+
 Logan is a good boy and a powerful ally. Now, you can Slay the Spire with
 Logan's assistance!
 
@@ -10,8 +14,12 @@ Logan is the loyal canine companion of
 
 ## Installation
 
-Simply subscribe to this mod on the steam workshop.
+Simply subscribe to
+[this mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3266253644) on
+the Steam Workshop.
 
 ## Feedback
 
-Contribution ideas? Bug reports? File an issue or submit a PR!
+Contribution ideas? Bug reports? File
+[an issue](https://github.com/brollin/LoganMod/issues/new/choose) or submit a
+PR!
