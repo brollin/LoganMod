@@ -1,11 +1,10 @@
-# Logan Mod
-
 <p align="center">
   <img alt="Logan Mod" src="./steam/image.jpg" width="400" />
 </p>
 
-Logan is a good boy and a powerful ally. Now, you can Slay the Spire with
-Logan's assistance!
+<p align="center">
+Logan is a good boy and a powerful ally. Now, you can Slay the Spire with Logan's assistance!
+</p>
 
 ## Who is Logan?
 
