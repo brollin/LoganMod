@@ -19,7 +19,7 @@
     </properties>
 
     <name>Logan Mod</name>
-    <version>0.0.0</version>
+    <version>0.0.1</version>
     <description>Slay the Spire with a free canine companion, Logan.</description>
 
     <groupId>loganmod</groupId>

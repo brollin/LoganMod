@@ -1,8 +1,13 @@
 {
   "steamPublishedID": "3266253644",
   "title": "Logan Mod",
-  "description": "Logan is a good boy and a powerful ally. Now, you can Slay the Spire with Logan's assistance!",
+  "description": "Logan is a good boy and a powerful ally. Now, you can Slay the Spire with Logan's assistance!
+  \nThis mod replaces three cards with Logan-themed cards. While they are functionally identical, you may feel an extra sense of companionship as you play them.
+  \n[h3]Who is logan?[/h3]
+  \nLogan is the loyal canine companion of [url=https://en.wikipedia.org/wiki/Grubby]Grubby[/url].
+  \n[h3]How do I contribute or report a bug?[/h3]
+  \nFeel free to contribute a PR or file an issue on [url=https://github.com/brollin/LoganMod]GitHub[/url].",
   "visibility": "private",
-  "changeNote": "v0.0.0: initial release",
+  "changeNote": "v0.0.1: improved card art",
   "tags": ["cards"]
 }

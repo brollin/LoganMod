@@ -3,24 +3,28 @@ package loganmod;
 import java.util.Map;
 import java.util.HashMap;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.green.PiercingWail;
 import com.megacrit.cardcrawl.cards.red.Bludgeon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.audio.Sfx;
 import com.megacrit.cardcrawl.audio.SoundMaster;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.BiasedCognition;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.Omamori;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 
 import basemod.ReflectionHacks;
 
@@ -40,6 +44,20 @@ public class CardPatches {
             if (m != null) {
                 CardCrawlGame.sound.play("LOGAN_BARK");
             }
+            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.5F));
+            AbstractDungeon.actionManager.addToBottom(
+                    new VFXAction(new LoganBiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()),
+                            0.3F));
+        }
+
+        public static void Postfix(Bludgeon self, AbstractPlayer p, AbstractMonster m) {
+            AbstractDungeon.actionManager.actions.removeIf(action -> {
+                if (action instanceof VFXAction) {
+                    AbstractGameEffect effect = ReflectionHacks.getPrivate(action, VFXAction.class, "effect");
+                    return effect instanceof WeightyImpactEffect;
+                }
+                return false;
+            });
         }
     }
 
@@ -102,6 +120,7 @@ public class CardPatches {
     public static class SoundPatches {
         public static void Postfix(SoundMaster __indent, HashMap<String, Sfx> ___map) {
             ___map.put("LOGAN_BARK", new Sfx("loganmod/sounds/logan-bark.ogg", false));
+            ___map.put("LOGAN_BITE", new Sfx("loganmod/sounds/logan-bite.ogg", false));
             ___map.put("LOGAN_WAIL", new Sfx("loganmod/sounds/logan-wail-1.ogg", false));
             ___map.put("ATTACK_PIERCING_WAIL", new Sfx("loganmod/sounds/logan-wail-2.ogg", false));
         }
