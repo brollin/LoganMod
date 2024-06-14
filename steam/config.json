@@ -8,6 +8,6 @@
   \n[h3]How do I contribute or report a bug?[/h3]
   \nFeel free to contribute a PR or file an issue on [url=https://github.com/brollin/LoganMod]GitHub[/url].",
   "visibility": "private",
-  "changeNote": "v0.0.1: improved card art",
+  "changeNote": "v0.0.2: update steam workshop information",
   "tags": ["cards"]
 }
