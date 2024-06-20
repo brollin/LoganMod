@@ -21,4 +21,9 @@ the Steam Workshop.
 
 Contribution ideas? Bug reports? File
 [an issue](https://github.com/brollin/LoganMod/issues/new/choose) or submit a
-PR!
+PR.
+
+## Credits
+
+Special thanks to Ruhigengeist and the man himself Grubby for their ideas and
+contributions!

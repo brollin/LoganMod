@@ -6,21 +6,26 @@ import java.util.HashMap;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.cards.blue.BiasedCognition;
+import com.megacrit.cardcrawl.cards.blue.Coolheaded;
 import com.megacrit.cardcrawl.cards.green.PiercingWail;
+import com.megacrit.cardcrawl.cards.green.Nightmare;
+import com.megacrit.cardcrawl.cards.green.Footwork;
 import com.megacrit.cardcrawl.cards.red.Bludgeon;
+import com.megacrit.cardcrawl.cards.red.DarkEmbrace;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.audio.Sfx;
 import com.megacrit.cardcrawl.audio.SoundMaster;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.BiasedCognition;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
+import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -29,6 +34,15 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import basemod.ReflectionHacks;
 
 public class CardPatches {
+    @SpirePatch(clz = DarkEmbrace.class, method = SpirePatch.CONSTRUCTOR)
+    public static class DarkEmbraceConstructor {
+        public static void Postfix(DarkEmbrace self) {
+            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/borkembrace.png"), 0,
+                    0,
+                    250, 190);
+        }
+    }
+
     @SpirePatch(clz = Bludgeon.class, method = SpirePatch.CONSTRUCTOR)
     public static class BludgeonConstructor {
         public static void Postfix(Bludgeon self) {
@@ -70,6 +84,24 @@ public class CardPatches {
         }
     }
 
+    @SpirePatch(clz = Nightmare.class, method = SpirePatch.CONSTRUCTOR)
+    public static class NightmareConstructor {
+        public static void Postfix(Nightmare self) {
+            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/nightmarelogan.png"),
+                    0, 0,
+                    250, 190);
+        }
+    }
+
+    @SpirePatch(clz = Footwork.class, method = SpirePatch.CONSTRUCTOR)
+    public static class FootworkConstructor {
+        public static void Postfix(Footwork self) {
+            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/pawwork.png"),
+                    0, 0,
+                    250, 190);
+        }
+    }
+
     @SpirePatch(clz = BiasedCognition.class, method = SpirePatch.CONSTRUCTOR)
     public static class BiasedCognitionConstructor {
         public static void Postfix(BiasedCognition self) {
@@ -86,9 +118,22 @@ public class CardPatches {
         }
     }
 
+    @SpirePatch(clz = Coolheaded.class, method = SpirePatch.CONSTRUCTOR)
+    public static class CoolheadedConstructor {
+        public static void Postfix(Coolheaded self) {
+            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/coolheadeddog.png"),
+                    0, 0,
+                    250, 190);
+        }
+    }
+
     @SpirePatch(clz = SingleCardViewPopup.class, method = "loadPortraitImg")
     public static class SingleCardViewPopupPatch {
         public static void Postfix(SingleCardViewPopup self) {
+            boolean viewBetaArt = ReflectionHacks.getPrivate(self, SingleCardViewPopup.class, "viewBetaArt");
+            if (viewBetaArt)
+                return;
+
             AbstractCard card = ReflectionHacks.getPrivate(self, SingleCardViewPopup.class, "card");
             if (card.cardID.equals("Biased Cognition")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
@@ -96,9 +141,21 @@ public class CardPatches {
             } else if (card.cardID.equals("PiercingWail")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/loganwail_p.png"));
+            } else if (card.cardID.equals("Night Terror")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/nightmarelogan_p.png"));
+            } else if (card.cardID.equals("Footwork")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/pawwork_p.png"));
             } else if (card.cardID.equals("Bludgeon")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/blogan_p.png"));
+            } else if (card.cardID.equals("Dark Embrace")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/borkembrace_p.png"));
+            } else if (card.cardID.equals("Coolheaded")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/coolheadeddog_p.png"));
             }
         }
     }
@@ -106,12 +163,18 @@ public class CardPatches {
     @SpirePatch(clz = LocalizedStrings.class, method = SpirePatch.CONSTRUCTOR)
     public static class StringPatches {
         public static void Postfix(LocalizedStrings self) {
-            Map<String, CardStrings> __cards = ReflectionHacks.getPrivateStatic(
-                    LocalizedStrings.class, "cards");
             if (Settings.language == Settings.GameLanguage.ENG) {
+                Map<String, CardStrings> __cards = ReflectionHacks.getPrivateStatic(
+                        LocalizedStrings.class, "cards");
+                ((CardStrings) __cards.get("Dark Embrace")).NAME = "Bork Embrace";
                 ((CardStrings) __cards.get("Bludgeon")).NAME = "Blogan";
                 ((CardStrings) __cards.get("PiercingWail")).NAME = "Logan Wail";
+                ((CardStrings) __cards.get("Footwork")).NAME = "Pawwork";
                 ((CardStrings) __cards.get("Biased Cognition")).NAME = "Biased Dognition";
+
+                Map<String, RelicStrings> __relics = ReflectionHacks.getPrivateStatic(
+                        LocalizedStrings.class, "relics");
+                // ((RelicStrings) __relics.get("Girya")).NAME = "Grubya";
             }
         }
     }
