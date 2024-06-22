@@ -34,21 +34,22 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import basemod.ReflectionHacks;
 
 public class CardPatches {
+    // help her function for creating portraits
+    public static AtlasRegion createPortrait(String path) {
+        return new AtlasRegion(ImageMaster.loadImage(path), 0, 0, 250, 190);
+    }
+
     @SpirePatch(clz = DarkEmbrace.class, method = SpirePatch.CONSTRUCTOR)
     public static class DarkEmbraceConstructor {
         public static void Postfix(DarkEmbrace self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/borkembrace.png"), 0,
-                    0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/borkembrace.png");
         }
     }
 
     @SpirePatch(clz = Bludgeon.class, method = SpirePatch.CONSTRUCTOR)
     public static class BludgeonConstructor {
         public static void Postfix(Bludgeon self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/blogan.png"), 0,
-                    0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/blogan.png");
         }
     }
 
@@ -78,45 +79,35 @@ public class CardPatches {
     @SpirePatch(clz = PiercingWail.class, method = SpirePatch.CONSTRUCTOR)
     public static class PiercingWailConstructor {
         public static void Postfix(PiercingWail self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/loganwail.png"),
-                    0, 0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/loganwail.png");
         }
     }
 
     @SpirePatch(clz = DodgeAndRoll.class, method = SpirePatch.CONSTRUCTOR)
     public static class loadImageConstructor {
         public static void Postfix(DodgeAndRoll self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/dogeandroll.png"),
-                    0, 0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/dogeandroll.png");
         }
     }
 
     @SpirePatch(clz = Nightmare.class, method = SpirePatch.CONSTRUCTOR)
     public static class NightmareConstructor {
         public static void Postfix(Nightmare self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/nightmarelogan.png"),
-                    0, 0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/nightmarelogan.png");
         }
     }
 
     @SpirePatch(clz = Footwork.class, method = SpirePatch.CONSTRUCTOR)
     public static class FootworkConstructor {
         public static void Postfix(Footwork self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/pawwork.png"),
-                    0, 0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/pawwork.png");
         }
     }
 
     @SpirePatch(clz = BiasedCognition.class, method = SpirePatch.CONSTRUCTOR)
     public static class BiasedCognitionConstructor {
         public static void Postfix(BiasedCognition self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/biaseddog.png"),
-                    0, 0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/biaseddog.png");
         }
     }
 
@@ -130,9 +121,7 @@ public class CardPatches {
     @SpirePatch(clz = Coolheaded.class, method = SpirePatch.CONSTRUCTOR)
     public static class CoolheadedConstructor {
         public static void Postfix(Coolheaded self) {
-            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/coolheadeddog.png"),
-                    0, 0,
-                    250, 190);
+            self.portrait = createPortrait("loganmod/images/cards/coolheadeddog.png");
         }
     }
 
