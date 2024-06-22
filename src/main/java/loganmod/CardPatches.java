@@ -34,7 +34,7 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import basemod.ReflectionHacks;
 
 public class CardPatches {
-    // help her function for creating portraits
+    // helper function for creating portraits
     public static AtlasRegion createPortrait(String path) {
         return new AtlasRegion(ImageMaster.loadImage(path), 0, 0, 250, 190);
     }

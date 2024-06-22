@@ -19,7 +19,6 @@ public class EventPatches {
         public static void Postfix(DigOption self) {
             ReflectionHacks.setPrivate(self, AbstractCampfireOption.class, "img",
                     ImageMaster.loadImage("loganmod/images/events/logandig.png"));
-
         }
     }
 
