@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.blue.BiasedCognition;
 import com.megacrit.cardcrawl.cards.blue.Coolheaded;
+import com.megacrit.cardcrawl.cards.green.DodgeAndRoll;
 import com.megacrit.cardcrawl.cards.green.PiercingWail;
 import com.megacrit.cardcrawl.cards.green.Nightmare;
 import com.megacrit.cardcrawl.cards.green.Footwork;
@@ -25,7 +26,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
-import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -79,6 +79,15 @@ public class CardPatches {
     public static class PiercingWailConstructor {
         public static void Postfix(PiercingWail self) {
             self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/loganwail.png"),
+                    0, 0,
+                    250, 190);
+        }
+    }
+
+    @SpirePatch(clz = DodgeAndRoll.class, method = SpirePatch.CONSTRUCTOR)
+    public static class loadImageConstructor {
+        public static void Postfix(DodgeAndRoll self) {
+            self.portrait = new AtlasRegion(ImageMaster.loadImage("loganmod/images/cards/dogeandroll.png"),
                     0, 0,
                     250, 190);
         }
@@ -138,6 +147,9 @@ public class CardPatches {
             if (card.cardID.equals("Biased Cognition")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/biaseddog_p.png"));
+            } else if (card.cardID.equals("Dodge and Roll")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/dogeandroll_p.png"));
             } else if (card.cardID.equals("PiercingWail")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/loganwail_p.png"));
@@ -168,12 +180,13 @@ public class CardPatches {
                         LocalizedStrings.class, "cards");
                 ((CardStrings) __cards.get("Dark Embrace")).NAME = "Bork Embrace";
                 ((CardStrings) __cards.get("Bludgeon")).NAME = "Blogan";
+                ((CardStrings) __cards.get("Dodge and Roll")).NAME = "Doge and Roll";
                 ((CardStrings) __cards.get("PiercingWail")).NAME = "Logan Wail";
                 ((CardStrings) __cards.get("Footwork")).NAME = "Pawwork";
                 ((CardStrings) __cards.get("Biased Cognition")).NAME = "Biased Dognition";
 
-                Map<String, RelicStrings> __relics = ReflectionHacks.getPrivateStatic(
-                        LocalizedStrings.class, "relics");
+                // Map<String, RelicStrings> __relics = ReflectionHacks.getPrivateStatic(
+                // LocalizedStrings.class, "relics");
                 // ((RelicStrings) __relics.get("Girya")).NAME = "Grubya";
             }
         }
