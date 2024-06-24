@@ -8,12 +8,16 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.blue.BiasedCognition;
 import com.megacrit.cardcrawl.cards.blue.Coolheaded;
+import com.megacrit.cardcrawl.cards.colorless.Bite;
+import com.megacrit.cardcrawl.cards.colorless.DramaticEntrance;
+import com.megacrit.cardcrawl.cards.colorless.Purity;
 import com.megacrit.cardcrawl.cards.green.DodgeAndRoll;
 import com.megacrit.cardcrawl.cards.green.PiercingWail;
 import com.megacrit.cardcrawl.cards.green.Nightmare;
 import com.megacrit.cardcrawl.cards.green.Footwork;
 import com.megacrit.cardcrawl.cards.red.Bludgeon;
 import com.megacrit.cardcrawl.cards.red.DarkEmbrace;
+import com.megacrit.cardcrawl.cards.red.Feed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -39,6 +43,29 @@ public class CardPatches {
         return new AtlasRegion(ImageMaster.loadImage(path), 0, 0, 250, 190);
     }
 
+    // COLORLESS CARDS
+    @SpirePatch(clz = Bite.class, method = SpirePatch.CONSTRUCTOR)
+    public static class BiteConstructor {
+        public static void Postfix(Bite self) {
+            self.portrait = createPortrait("loganmod/images/cards/logan-bite.png");
+        }
+    }
+
+    @SpirePatch(clz = DramaticEntrance.class, method = SpirePatch.CONSTRUCTOR)
+    public static class DramaticEntranceConstructor {
+        public static void Postfix(DramaticEntrance self) {
+            self.portrait = createPortrait("loganmod/images/cards/dramatic-logan.png");
+        }
+    }
+
+    @SpirePatch(clz = Purity.class, method = SpirePatch.CONSTRUCTOR)
+    public static class PurityConstructor {
+        public static void Postfix(Purity self) {
+            self.portrait = createPortrait("loganmod/images/cards/pure-logan.png");
+        }
+    }
+
+    // IRONCLAD CARDS
     @SpirePatch(clz = DarkEmbrace.class, method = SpirePatch.CONSTRUCTOR)
     public static class DarkEmbraceConstructor {
         public static void Postfix(DarkEmbrace self) {
@@ -76,6 +103,14 @@ public class CardPatches {
         }
     }
 
+    @SpirePatch(clz = Feed.class, method = SpirePatch.CONSTRUCTOR)
+    public static class FeedConstructor {
+        public static void Postfix(Feed self) {
+            self.portrait = createPortrait("loganmod/images/cards/logan-feed.png");
+        }
+    }
+
+    // SILENT CARDS
     @SpirePatch(clz = PiercingWail.class, method = SpirePatch.CONSTRUCTOR)
     public static class PiercingWailConstructor {
         public static void Postfix(PiercingWail self) {
@@ -104,6 +139,7 @@ public class CardPatches {
         }
     }
 
+    // DEFECT CARDS
     @SpirePatch(clz = BiasedCognition.class, method = SpirePatch.CONSTRUCTOR)
     public static class BiasedCognitionConstructor {
         public static void Postfix(BiasedCognition self) {
@@ -151,12 +187,24 @@ public class CardPatches {
             } else if (card.cardID.equals("Bludgeon")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/blogan_p.png"));
+            } else if (card.cardID.equals("Feed")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/logan-feed_p.png"));
             } else if (card.cardID.equals("Dark Embrace")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/borkembrace_p.png"));
             } else if (card.cardID.equals("Coolheaded")) {
                 ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
                         ImageMaster.loadImage("loganmod/images/cards/coolheadeddog_p.png"));
+            } else if (card.cardID.equals("Dramatic Entrance")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/dramatic-logan_p.png"));
+            } else if (card.cardID.equals("Purity")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/pure-logan_p.png"));
+            } else if (card.cardID.equals("Bite")) {
+                ReflectionHacks.setPrivate(self, SingleCardViewPopup.class, "portraitImg",
+                        ImageMaster.loadImage("loganmod/images/cards/logan-bite_p.png"));
             }
         }
     }
@@ -173,10 +221,6 @@ public class CardPatches {
                 ((CardStrings) __cards.get("PiercingWail")).NAME = "Logan Wail";
                 ((CardStrings) __cards.get("Footwork")).NAME = "Pawwork";
                 ((CardStrings) __cards.get("Biased Cognition")).NAME = "Biased Dognition";
-
-                // Map<String, RelicStrings> __relics = ReflectionHacks.getPrivateStatic(
-                // LocalizedStrings.class, "relics");
-                // ((RelicStrings) __relics.get("Girya")).NAME = "Grubya";
             }
         }
     }
