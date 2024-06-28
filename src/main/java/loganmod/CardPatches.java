@@ -215,6 +215,7 @@ public class CardPatches {
             if (Settings.language == Settings.GameLanguage.ENG) {
                 Map<String, CardStrings> __cards = ReflectionHacks.getPrivateStatic(
                         LocalizedStrings.class, "cards");
+                ((CardStrings) __cards.get("Dramatic Entrance")).NAME = "Dogmatic Entrance";
                 ((CardStrings) __cards.get("Dark Embrace")).NAME = "Bork Embrace";
                 ((CardStrings) __cards.get("Bludgeon")).NAME = "Blogan";
                 ((CardStrings) __cards.get("Dodge and Roll")).NAME = "Doge and Roll";
