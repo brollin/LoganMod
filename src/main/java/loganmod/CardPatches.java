@@ -219,7 +219,7 @@ public class CardPatches {
                 ((CardStrings) __cards.get("Dark Embrace")).NAME = "Bork Embrace";
                 ((CardStrings) __cards.get("Bludgeon")).NAME = "Blogan";
                 ((CardStrings) __cards.get("Dodge and Roll")).NAME = "Doge and Roll";
-                ((CardStrings) __cards.get("PiercingWail")).NAME = "Logan Wail";
+                ((CardStrings) __cards.get("PiercingWail")).NAME = "Howling Wail";
                 ((CardStrings) __cards.get("Footwork")).NAME = "Pawwork";
                 ((CardStrings) __cards.get("Biased Cognition")).NAME = "Biased Dognition";
             }
